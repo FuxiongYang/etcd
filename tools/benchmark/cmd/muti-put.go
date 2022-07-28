@@ -55,14 +55,13 @@ func mutiPutFunc(cmd *cobra.Command, args []string){
 		fmt.Fprintf(os.Stderr, "expected positive --key-space-size, got (%v)", keySpaceSize)
 		os.Exit(1)
 	}
-
-	requests := make(chan v3.Op, totalClients)
 	if putRate == 0 {
 		putRate = math.MaxInt32
 	}
 	limit := rate.NewLimiter(rate.Limit(putRate), 1)
 
 	etcdInstances, _ := generateEtcdContextFromCSV(etcdServerCount, etcdConnectionConfig, ignoreCSVConfigFirstLine)
+	requests := make(chan v3.Op, int(totalConns) * len(etcdInstances))
 	clients := mustCreateClientsWithInput(totalClients, totalConns, etcdInstances)
 
 	_, v := make([]byte, keySize), string(mustRandBytes(valSize))
