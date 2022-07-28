@@ -1,0 +1,6 @@
+spec:
+  configfile:
+    - endpoints: https://c9sbnrmrsfenkp0o03t0.etcd.ivolces.com:2379
+      cert: etcd-client.crt
+      key: etcd-client.key
+      cacert: etcd-client-ca.crt

@@ -102,17 +102,11 @@ func putRealFunc(cmd *cobra.Command, args []string) {
 
 		for i := 0; i < putTotal; i++ {
 			var key string
-			//rand.Seed(time.Now().UnixNano())
 			leaf := "k8sKeyLeafNodeInEtcdDataTree"
 			key = realKeyPrefix
 			num := i % realKeyNumber
 			for j := 0; j < realBtreeDepth; j++{
 				key = key + "/" + leaf + strconv.Itoa(num)
-				//key = key + "/" + leaf + strconv.Itoa(rand.Intn(20))
-				//relayKeys =  realKeyNumber / 20
-				//if relayKeys == 0{
-				//	goto keys
-				//}
 			}
 			key = key + "/k8sResourceDataName" + strconv.Itoa(num)
 			requests <- v3.OpPut(key, v)

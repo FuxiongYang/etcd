@@ -1,0 +1,5 @@
+# 注释
+# 分隔符为","
+# 顺序为 endpoints,cert,key,cacert，暂未做校验强对齐
+# 多个endpoint间通过 "|"， 进行分割
+endpoints,cert,key,cacert
